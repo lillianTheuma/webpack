@@ -1,18 +1,20 @@
-import { pingPong } from './ping-pong';
+import 'roman.js';
 import './styles.css';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-
 $(document).ready(function() {
-  $('#ping-pong-form').submit(function(event) {
+  $("form#num").submit(function(event) {
+    var num = $("#input").val();
+
+    var output = (toRoman(num).join(''));
+
+    if(!output){
+      output="Stultus es valde.";
+    }
+    $(".result").text(output);
     event.preventDefault();
-    var goal = $('#goal').val();
-    var output = pingPong(goal);
-    output.forEach(function(element) {
-      $('#solution').append("<li>" + element + "</li>");
-    });
   });
 });
